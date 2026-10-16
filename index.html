@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf7fb">
+  <meta name="description" content="Miracle Today — 흐르는 물처럼, 지금 여기에 깨어 있으려는 사람 '물'의 일상과 활동을 담은 공간입니다.">
+  <title>Miracle Today | 흐르는 물처럼</title>
+  <style>
+    :root {
+      --sky: #eaf7fb;
+      --sky-deep: #c8e9f2;
+      --paper: #fffdfa;
+      --mint: #e4f2e8;
+      --peach: #ffddc5;
+      --ink: #263e4a;
+      --muted: #627781;
+      --teal: #357e8b;
+      --line: rgba(40, 91, 105, .13);
+      --shadow: 0 18px 55px rgba(43, 95, 113, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.8; word-break: keep-all; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1120px, calc(100% - 44px)); margin-inline: auto; }
+    .skip-link { position: absolute; z-index: 100; top: -60px; left: 15px; background: #fff; padding: 10px 18px; border-radius: 12px; }
+    .skip-link:focus { top: 12px; }
+    .site-header { position: sticky; top: 0; z-index: 30; background: rgba(245, 252, 253, .90); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .header-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-family: Georgia, serif; font-size: 23px; font-weight: 700; letter-spacing: -.7px; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 13px 13px 17px 17px; color: var(--teal); background: #d7eff4; font-size: 23px; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a { padding: 9px 15px; border-radius: 100px; font-size: 13px; font-weight: 750; letter-spacing: 1px; }
+    .nav-links a:hover, .nav-links a:focus-visible { background: #dbeff3; outline-color: var(--teal); }
+    .menu-toggle { display: none; width: 43px; height: 43px; border: 1px solid var(--line); background: white; color: var(--ink); border-radius: 13px; cursor: pointer; }
+    .hero { overflow: hidden; background: linear-gradient(155deg, #eaf7fb 0%, #f7fcfd 55%, #fff8ee 100%); }
+    .hero-inner { display: grid; grid-template-columns: 1fr .96fr; align-items: center; gap: clamp(30px, 6vw, 86px); min-height: 650px; padding-block: 75px 95px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 1px; background: currentColor; }
+    .hero h1 { margin: 24px 0 23px; font-size: clamp(47px, 6.9vw, 88px); font-weight: 700; letter-spacing: -.07em; line-height: 1.17; }
+    .hero h1 span { display: block; color: var(--teal); }
+    .hero-lead { max-width: 480px; margin: 0 0 31px; font-size: clamp(17px, 2vw, 21px); color: #506976; line-height: 1.9; }
+    .hero-lead strong { color: var(--ink); font-weight: 750; }
+    .primary-btn, .text-link { display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: transform .2s, background .2s; }
+    .primary-btn { padding: 15px 23px; border-radius: 100px; background: var(--teal); color: white; font-weight: 750; box-shadow: 0 9px 25px rgba(53, 126, 139, .22); }
+    .primary-btn:hover { background: #286b77; transform: translateY(-2px); }
+    .primary-btn:focus-visible, .text-link:focus-visible { outline: 3px solid #eeab76; outline-offset: 3px; }
+    .hero-note { margin-top: 42px; font-size: 12px; color: #7e969e; letter-spacing: 1.5px; }
+    .hero-photo { position: relative; height: 500px; border-radius: 49% 49% 43% 43% / 38% 38% 35% 35%; overflow: hidden; background: linear-gradient(175deg, #d7eef5, #92cddd 57%, #6bb0c0); box-shadow: 24px 27px 0 rgba(195, 229, 233, .50), var(--shadow); isolation: isolate; }
+    .hero-photo::before { content: ""; position: absolute; width: 250px; height: 250px; top: 28px; right: -30px; border-radius: 50%; background: rgba(255, 246, 215, .80); filter: blur(2px); }
+    .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(32, 88, 100, .17), transparent 47%); pointer-events: none; }
+    .river-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-photo .slot-label { position: absolute; z-index: 3; left: 26px; right: 26px; bottom: 28px; padding: 13px 19px; background: rgba(255,255,255,.80); backdrop-filter: blur(8px); border-radius: 15px; text-align: center; font-size: 13px; color: #3c6873; }
+    .photo-slot { position: relative; overflow: hidden; }
+    .photo-slot img { display: none; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; z-index: 2; }
+    .photo-slot.has-photo img { display: block; }
+    .photo-slot.has-photo .placeholder-only { display: none; }
+    section:not(.hero) { padding-block: 110px; }
+    .section-heading { margin-bottom: 48px; }
+    .section-heading h2 { margin: 13px 0 12px; font-size: clamp(32px, 4vw, 48px); line-height: 1.3; letter-spacing: -.05em; }
+    .section-heading p { max-width: 650px; margin: 0; color: var(--muted); }
+    .about { background: var(--paper); }
+    .about-layout { display: grid; grid-template-columns: .83fr 1.17fr; gap: 65px; align-items: start; }
+    .about-quote { padding: 35px; background: var(--sky); border: 1px solid var(--line); border-radius: 30px; }
+    .about-quote .water-icon { display: block; font-size: 37px; color: var(--teal); line-height: 1; }
+    .about-quote blockquote { margin: 25px 0; font-size: clamp(24px, 3vw, 34px); font-weight: 730; line-height: 1.6; letter-spacing: -.04em; }
+    .about-quote small { color: var(--teal); font-weight: 750; }
+    .about-copy p { margin: 0 0 18px; font-size: 17px; color: #526b76; }
+    .about-copy strong { color: var(--ink); }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .tag { padding: 8px 15px; border-radius: 100px; background: #f1f8f8; border: 1px solid var(--line); font-size: 13px; color: var(--teal); font-weight: 700; }
+    .work { background: #f4faf9; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .work-card { overflow: hidden; border-radius: 30px; background: white; border: 1px solid var(--line); box-shadow: 0 12px 32px rgba(43, 95, 113, .05); transition: transform .2s ease, box-shadow .2s ease; }
+    .work-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .work-visual { height: 220px; display: grid; place-items: center; }
+    .run-visual { background: linear-gradient(135deg, #d9ecda, #c3e6e6); }
+    .read-visual { background: linear-gradient(135deg, #fce5cf, #dcecf1); }
+    .work-visual .placeholder-only { text-align: center; color: #426c74; }
+    .work-visual .art-icon { display: block; font-size: 65px; line-height: 1.5; }
+    .work-visual .slot-hint { font-size: 12px; letter-spacing: .2px; }
+    .work-content { padding: 30px 32px 35px; }
+    .work-kicker { font-size: 12px; letter-spacing: 1.5px; color: var(--teal); font-weight: 800; }
+    .work-content h3 { margin: 12px 0; font-size: 26px; letter-spacing: -.035em; }
+    .work-content .quote { margin: 0 0 15px; color: var(--teal); font-size: 18px; font-weight: 750; }
+    .work-content p:last-child { margin-bottom: 0; color: var(--muted); }
+    .gallery { background: var(--paper); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .gallery-frame { margin: 0; }
+    .gallery-photo { height: 255px; border-radius: 24px; display: grid; place-items: center; border: 1px solid var(--line); }
+    .gallery-frame:nth-child(1) .gallery-photo { background: #e7f3f5; }
+    .gallery-frame:nth-child(2) .gallery-photo { background: #f7eee1; }
+    .gallery-frame:nth-child(3) .gallery-photo { background: #eaf0e7; }
+    .gallery-photo .placeholder-only { text-align: center; color: #6c8b91; }
+    .gallery-photo .frame-icon { display: block; margin: auto; font-size: 49px; }
+    .gallery-photo .slot-hint { display: block; margin-top: 8px; font-size: 12px; }
+    .gallery-frame figcaption { padding: 16px 3px 0; color: #607781; font-size: 14px; }
+    .gallery-footnote { margin: 35px 0 0; color: var(--muted); font-size: 14px; }
+    .closing { padding: 52px 20px; background: linear-gradient(100deg, #e3f4f8, #f6f7e9); text-align: center; }
+    .closing p { margin: 0; color: var(--teal); font-size: clamp(18px, 2.5vw, 26px); font-weight: 650; letter-spacing: -.035em; }
+    footer { background: #eaf5f5; border-top: 1px solid var(--line); }
+    .footer-inner { min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 13px; color: #68818a; }
+    .footer-inner strong { color: var(--teal); font-family: Georgia, serif; font-size: 18px; }
+    .to-top { padding: 8px 14px; border: 1px solid #bedde2; border-radius: 30px; color: #366e7b; font-weight: 750; }
+    .to-top:hover { background: white; }
+    @media (max-width: 800px) {
+      .hero-inner { grid-template-columns: 1fr; padding-block: 66px 80px; min-height: 0; }
+      .hero-photo { width: min(100%, 540px); height: 390px; margin: 5px auto 0; }
+      .about-layout { grid-template-columns: 1fr; gap: 25px; }
+      .about-quote { max-width: 630px; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 32px, 1120px); }
+      .header-inner { min-height: 68px; }
+      .brand { font-size: 20px; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav-links { display: none; position: absolute; left: 16px; right: 16px; top: 73px; padding: 14px; flex-direction: column; align-items: stretch; gap: 2px; border: 1px solid var(--line); border-radius: 18px; background: #f8fdfd; box-shadow: var(--shadow); }
+      .nav-links.is-open { display: flex; }
+      .nav-links a { display: block; padding: 11px 15px; }
+      .hero h1 { margin-top: 18px; font-size: clamp(49px, 11.5vw, 68px); }
+      .hero-photo { height: 340px; }
+      section:not(.hero) { padding-block: 76px; }
+      .section-heading { margin-bottom: 28px; }
+      .about-quote { padding: 28px; }
+      .work-grid, .gallery-grid { grid-template-columns: 1fr; }
+      .work-visual { height: 205px; }
+      .work-content { padding: 25px; }
+      .gallery-photo { height: 260px; }
+      .footer-inner { min-height: 100px; flex-wrap: wrap; justify-content: center; padding-block: 25px; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .work-card, .primary-btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Miracle Today 홈으로">
+        <span class="brand-mark" aria-hidden="true">~</span> Miracle Today
+      </a>
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">☰</button>
+      <nav class="nav-links" id="main-nav" aria-label="주요 메뉴">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#work">WORK</a>
+        <a href="#gallery">GALLERY</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. HOME -->
+    <section class="hero" id="home" aria-labelledby="home-title">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">A little miracle, every day</span>
+          <h1 id="home-title">흐르는<br><span>물처럼</span></h1>
+          <p class="hero-lead">안녕하세요, <strong>물</strong>입니다.<br>지금 여기에 깨어 있으려는 사람.<br>오늘을 감사히 맞이하고 즐기며 살아갑니다.</p>
+          <a class="primary-btn" href="#work">나의 활동 보기 <span aria-hidden="true">→</span></a>
+          <p class="hero-note">MIRACLE TODAY · 오늘의 작은 기적</p>
+        </div>
+        <!-- 여기에 물이 흐르는 사진을 넣을 수 있습니다. -->
+        <div class="hero-photo photo-slot" data-photo="hero" aria-label="물이 흐르는 사진 자리">
+          <svg class="river-art placeholder-only" aria-hidden="true" viewBox="0 0 500 500" preserveAspectRatio="none">
+            <path d="M-60 215 C95 85 165 255 310 170 S505 100 570 155 L570 520 L-60 520Z" fill="#bee5eb" opacity=".82"/>
+            <path d="M-60 310 C95 190 165 340 310 255 S505 205 570 250 L570 520 L-60 520Z" fill="#8ac4d0" opacity=".8"/>
+            <path d="M-60 398 C95 275 165 435 310 335 S505 295 570 345 L570 520 L-60 520Z" fill="#64a7b8" opacity=".85"/>
+            <path d="M-20 250 Q115 160 243 238 T520 208 M-20 346 Q115 260 243 330 T520 308 M-20 430 Q115 350 243 414 T520 392" fill="none" stroke="#e7f7f7" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+          </svg>
+          <span class="slot-label placeholder-only">사진 자리 · 흐르는 물의 풍경</span>
+          <img alt="잔잔하게 흐르는 물의 풍경">
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">About me</span>
+          <h2 id="about-title">오늘을 살아가는 마음</h2>
+          <p>자연스럽게 흐르면서도 나의 하루를 충실히 채워 갑니다.</p>
+        </div>
+        <div class="about-layout">
+          <div class="about-quote">
+            <span class="water-icon" aria-hidden="true">〰</span>
+            <blockquote>“저는 오늘을 감사히 맞이하고 즐기는 사람입니다.”</blockquote>
+            <small>물 · 지금 여기에 깨어 있으려는 사람</small>
+          </div>
+          <div class="about-copy">
+            <p>저는 <strong>인류의 미래, 자아실현, 행복</strong>에 관심이 있습니다. 더 넓은 세상과 나 자신을 이해하기 위해 책을 읽고, AI 활용법을 공부하고, 명상합니다.</p>
+            <p>아침에는 가볍게 달리고, 산책하고, 도서관에서 책 읽는 시간을 좋아합니다. 전시회에서 그림을 감상하고 가족과 함께 보내는 시간도 소중히 여깁니다.</p>
+            <p>글을 교정하고 음식을 만드는 일을 잘합니다. 요즘은 AI를 활용한 노래·영상 만들기와 사진 에세이 쓰기도 배우고 있습니다. 앞으로는 독서와 여행, 긴 명상을 더 깊이 경험하고 싶습니다.</p>
+            <div class="tag-list" aria-label="관심사와 생활 키워드">
+              <span class="tag">#마음의 평화</span><span class="tag">#독서</span><span class="tag">#명상</span><span class="tag">#AI배움</span><span class="tag">#슬로우러닝</span><span class="tag">#행복</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. WORK -->
+    <section class="work" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">My everyday practice</span>
+          <h2 id="work-title">내 하루를 빛내는 두 가지</h2>
+          <p>조금씩, 그러나 꾸준히. 나에게 기쁨과 배움을 주는 시간입니다.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <div class="work-visual run-visual photo-slot" data-photo="running">
+              <div class="placeholder-only"><span class="art-icon" aria-hidden="true">☀</span><span class="slot-hint">사진 자리 · 아침 수변공원</span></div>
+              <img alt="아침 수변공원에서 슬로우 러닝하는 풍경">
+            </div>
+            <div class="work-content">
+              <span class="work-kicker">01 · SLOW RUNNING</span>
+              <h3>아침의 슬로우 러닝</h3>
+              <p class="quote">“아침 햇살로 몸과 마음을 건강하게”</p>
+              <p>매일 아침 수변공원에서 30분 정도 가볍게 뜁니다. 천천히 달리는 동안 몸과 마음이 가벼워지고, 스스로에 대한 자긍심이 생깁니다.</p>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-visual read-visual photo-slot" data-photo="reading">
+              <div class="placeholder-only"><span class="art-icon" aria-hidden="true">▤</span><span class="slot-hint">사진 자리 · 책과 도서관</span></div>
+              <img alt="독서하거나 도서관에서 책을 읽는 모습">
+            </div>
+            <div class="work-content">
+              <span class="work-kicker">02 · READING</span>
+              <h3>세상과 만나는 독서</h3>
+              <p class="quote">“내 울타리를 넘어 우리의 들판으로”</p>
+              <p>매일 아침 집에서, 또 틈틈이 도서관에서 관심 분야의 책을 읽습니다. 타인의 삶을 간접 경험하며 지혜를 얻고, 세상의 이치를 조금 더 알아갑니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. GALLERY -->
+    <section class="gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Little moments of beauty</span>
+          <h2 id="gallery-title">마음에 남은 그림들</h2>
+          <p>전시회에서 만난 그림의 사진을 이곳에 차곡차곡 담을 예정입니다.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-frame">
+            <div class="gallery-photo photo-slot" data-photo="gallery1">
+              <div class="placeholder-only"><span class="frame-icon" aria-hidden="true">▧</span><span class="slot-hint">그림 사진을 넣어 주세요</span></div>
+              <img alt="전시회에서 감상한 그림 사진 첫 번째">
+            </div>
+            <figcaption>전시회 그림 사진 01 · 사진 준비 중</figcaption>
+          </figure>
+          <figure class="gallery-frame">
+            <div class="gallery-photo photo-slot" data-photo="gallery2">
+              <div class="placeholder-only"><span class="frame-icon" aria-hidden="true">▧</span><span class="slot-hint">그림 사진을 넣어 주세요</span></div>
+              <img alt="전시회에서 감상한 그림 사진 두 번째">
+            </div>
+            <figcaption>전시회 그림 사진 02 · 사진 준비 중</figcaption>
+          </figure>
+          <figure class="gallery-frame">
+            <div class="gallery-photo photo-slot" data-photo="gallery3">
+              <div class="placeholder-only"><span class="frame-icon" aria-hidden="true">▧</span><span class="slot-hint">그림 사진을 넣어 주세요</span></div>
+              <img alt="전시회에서 감상한 그림 사진 세 번째">
+            </div>
+            <figcaption>전시회 그림 사진 03 · 사진 준비 중</figcaption>
+          </figure>
+        </div>
+        <p class="gallery-footnote">※ 사진은 아직 등록되지 않았습니다. 파일 맨 아래의 <strong>PHOTO_FILES</strong>에 사진 이름을 넣으면 표시됩니다.</p>
+      </div>
+    </section>
+
+    <div class="closing"><p>어제보다 조금 더 자유롭고 평온한 오늘, Miracle Today.</p></div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>Miracle Today</strong><div>© <span id="year">2026</span> 물. 오늘을 감사히 살아가는 기록.</div></div>
+      <a class="to-top" href="#home">맨 위로 ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    /* 사진 바꾸기: 사진 파일을 index.html과 같은 폴더에 넣고
+       아래 따옴표 안에 파일명을 적으세요. 예: hero: "river.jpg"
+       빈칸("")이면 원래의 사진 자리표시자가 보입니다. */
+    const PHOTO_FILES = {
+      hero: "",       // 흐르는 물 사진
+      running: "",    // 아침 러닝 사진
+      reading: "",    // 독서 사진
+      gallery1: "",   // 전시회 그림 사진 1
+      gallery2: "",   // 전시회 그림 사진 2
+      gallery3: ""    // 전시회 그림 사진 3
+    };
+
+    Object.entries(PHOTO_FILES).forEach(([key, filename]) => {
+      if (!filename) return;
+      const slot = document.querySelector(`[data-photo="${key}"]`);
+      if (!slot) return;
+      const img = slot.querySelector("img");
+      img.onload = () => slot.classList.add("has-photo");
+      img.onerror = () => console.warn(`사진 파일을 찾을 수 없습니다: ${filename}`);
+      img.src = filename;
+    });
+
+    // 휴대전화 화면의 메뉴 열기/닫기
+    const menuButton = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".nav-links");
+    function closeMenu() {
+      nav.classList.remove("is-open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "메뉴 열기");
+    }
+    menuButton.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("is-open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
+    });
+    nav.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", event => { if (event.key === "Escape") closeMenu(); });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
